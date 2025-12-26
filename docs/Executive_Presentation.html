@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion-Based Discovery for Audible - Executive Presentation</title>
+    <style>
+        @media print {
+            @page {
+                size: letter;
+                margin: 0.75in;
+            }
+            
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            
+            h1, h2, h3 {
+                page-break-after: avoid;
+            }
+            
+            table, figure {
+                page-break-inside: avoid;
+            }
+        }
+        
+        @media screen {
+            body {
+                max-width: 8.5in;
+                margin: 0 auto;
+                padding: 1in;
+                background: #f5f5f5;
+            }
+            
+            .container {
+                background: white;
+                padding: 1in;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            }
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 11pt;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        h1 {
+            color: #1a365d;
+            font-size: 28pt;
+            font-weight: 700;
+            margin: 0 0 30pt 0;
+            padding-bottom: 15pt;
+            border-bottom: 4px solid #2563eb;
+        }
+        
+        h2 {
+            color: #1e40af;
+            font-size: 20pt;
+            font-weight: 600;
+            margin: 36pt 0 18pt 0;
+            padding-bottom: 8pt;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        
+        h3 {
+            color: #1e3a8a;
+            font-size: 16pt;
+            font-weight: 600;
+            margin: 24pt 0 12pt 0;
+        }
+        
+        h4 {
+            color: #1e40af;
+            font-size: 13pt;
+            font-weight: 600;
+            margin: 18pt 0 10pt 0;
+        }
+        
+        p {
+            margin: 0 0 12pt 0;
+            text-align: justify;
+        }
+        
+        strong {
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+        
+        em {
+            color: #4b5563;
+            font-style: italic;
+        }
+        
+        ul, ol {
+            margin: 12pt 0;
+            padding-left: 30pt;
+        }
+        
+        li {
+            margin-bottom: 8pt;
+        }
+        
+        ul ul, ol ol {
+            margin-top: 6pt;
+            margin-bottom: 6pt;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20pt 0;
+            font-size: 10pt;
+        }
+        
+        thead {
+            background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+        }
+        
+        th {
+            background-color: #2563eb;
+            color: white;
+            padding: 12pt 10pt;
+            text-align: left;
+            font-weight: 600;
+            border: 1px solid #1e40af;
+        }
+        
+        td {
+            border: 1px solid #d1d5db;
+            padding: 10pt;
+            vertical-align: top;
+        }
+        
+        tbody tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+        
+        tbody tr:hover {
+            background-color: #eff6ff;
+        }
+        
+        code {
+            background-color: #f3f4f6;
+            color: #dc2626;
+            padding: 2pt 6pt;
+            border-radius: 4pt;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 10pt;
+        }
+        
+        pre {
+            background-color: #1f2937;
+            color: #f3f4f6;
+            padding: 15pt;
+            border-radius: 6pt;
+            overflow-x: auto;
+            margin: 15pt 0;
+        }
+        
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+        
+        blockquote {
+            border-left: 4px solid #2563eb;
+            background-color: #eff6ff;
+            padding: 12pt 15pt;
+            margin: 15pt 0;
+            color: #1e40af;
+            font-style: italic;
+        }
+        
+        hr {
+            border: none;
+            border-top: 2px solid #e5e7eb;
+            margin: 30pt 0;
+        }
+        
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .page-break {
+            page-break-after: always;
+        }
+        
+        /* Header styling */
+        .header {
+            text-align: center;
+            margin-bottom: 40pt;
+        }
+        
+        /* Footer for print */
+        @media print {
+            .no-print {
+                display: none;
+            }
+        }
+        
+        .print-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 12px 24px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14pt;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        
+        .print-button:hover {
+            background: #1e40af;
+        }
+    </style>
+</head>
+<body>
+    <button class="print-button no-print" onclick="window.print()">🖨️ Save as PDF</button>
+    <div class="container">
+<h1>🎧 Emotion-Driven Discovery for Audible</h1>
+<h2>Executive Presentation</h2>
+<p><strong>Presented to:</strong> Executive Leadership &amp; Product Team<br />
+<strong>Date:</strong> December 26, 2025<br />
+<strong>Prepared by:</strong> Analytics &amp; ML Engineering</p>
+<hr />
+<h2>📋 Executive Summary</h2>
+<h3>The Opportunity</h3>
+<p><strong>Problem:</strong> 31% of Audible listeners struggle to find content matching their emotional needs. Current discovery relies on genres and popularity, missing the emotional dimension that drives listening decisions.</p>
+<p><strong>Solution:</strong> AI-powered emotion-based recommendation system using advanced NLP to match 10 emotional states with appropriate audiobooks.</p>
+<h3>Key Results</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Recommendation Precision</strong></td>
+<td><strong>+71%</strong> improvement</td>
+</tr>
+<tr>
+<td><strong>Ranking Quality (NDCG)</strong></td>
+<td><strong>+113%</strong> improvement</td>
+</tr>
+<tr>
+<td><strong>Content Diversity</strong></td>
+<td><strong>+15%</strong> broader discovery</td>
+</tr>
+<tr>
+<td><strong>Average Rating</strong></td>
+<td><strong>4.16★</strong> vs 3.98★ baseline</td>
+</tr>
+</tbody>
+</table>
+<h3>Business Impact (Projected Annual)</h3>
+<pre><code>💰 Revenue Protection (1% retention lift)
+   → $216M annually
+
+🚀 Discovery Revenue (cross-genre growth)
+   → $50M+ incremental
+
+📊 Total Estimated Value
+   → $266M+ per year
+
+💵 Infrastructure Investment
+   → $660K/year
+
+🎯 ROI: 400:1
+</code></pre>
+<hr />
+<h2>🎯 The Business Case</h2>
+<h3>Current State: Discovery Friction</h3>
+<p><strong>User Pain Points:</strong><br />
+- ⏱️ <strong>8.5 minutes</strong> average time to find and start a title<br />
+- 🚫 <strong>22% search abandonment</strong> - users leave without starting content<br />
+- 😰 <strong>31% report difficulty</strong> finding mood-appropriate content<br />
+- 🔄 <strong>High refinement rate</strong> - users keep searching</p>
+<p><strong>Market Context:</strong><br />
+- Spotify launching mood-based podcast discovery<br />
+- Apple Books improving personalization<br />
+- Mental wellness market growing 20% YoY<br />
+- Opportunity for Audible to lead in emotional intelligence</p>
+<h3>Target User Personas</h3>
+<p><strong>Primary:</strong> Wellness-Focused Listeners (40% of user base)<br />
+- Use audiobooks for stress relief, sleep, motivation<br />
+- Value emotional connection over genre<br />
+- Higher retention when needs are met</p>
+<p><strong>Secondary:</strong> Casual Browsers (35% of user base)<br />
+- Don't know what they want, need guidance<br />
+- Frustrated by irrelevant recommendations<br />
+- High potential for conversion with better matching</p>
+<p><strong>Impact Zone:</strong> 135M of 180M members</p>
+<hr />
+<h2>🔬 Technical Approach</h2>
+<h3>Two-Model Comparison</h3>
+<h4>Model 1: TF-IDF Baseline (Current State)</h4>
+<ul>
+<li><strong>Approach:</strong> Keyword matching</li>
+<li><strong>Speed:</strong> &lt;10ms</li>
+<li><strong>Cost:</strong> $100/month</li>
+<li><strong>Precision:</strong> 48%</li>
+<li><strong>Verdict:</strong> ❌ Not good enough - misses 52% of relevant content</li>
+</ul>
+<h4>Model 2: SBERT Advanced (Recommended)</h4>
+<ul>
+<li><strong>Approach:</strong> Semantic understanding with AI embeddings</li>
+<li><strong>Speed:</strong> 50ms (acceptable)</li>
+<li><strong>Cost:</strong> $55K/month</li>
+<li><strong>Precision:</strong> 82%</li>
+<li><strong>Verdict:</strong> ✅ <strong>Clear winner</strong> - 71% more accurate</li>
+</ul>
+<h3>Why SBERT Wins</h3>
+<p><strong>Understands Language, Not Just Keywords:</strong><br />
+- Knows "calming" = "peaceful" = "soothing"<br />
+- Distinguishes "dark comedy" vs "dark horror"<br />
+- Handles typos and informal language</p>
+<p><strong>Captures Emotional Nuance:</strong><br />
+- "Sad but hopeful" ≠ "deeply depressing"<br />
+- Context-aware recommendations<br />
+- Better matches complex feelings</p>
+<p><strong>Zero-Shot Learning:</strong><br />
+- Works on new titles immediately<br />
+- No retraining required for new releases<br />
+- Scales efficiently</p>
+<hr />
+<h2>💰 Financial Analysis</h2>
+<h3>Investment Required</h3>
+<p><strong>One-Time Costs:</strong><br />
+- Model development: $500K ✅ <em>Already invested</em><br />
+- Integration &amp; testing: $200K<br />
+- <strong>Total:</strong> $700K (mostly sunk)</p>
+<p><strong>Ongoing Costs:</strong><br />
+- Infrastructure (GPU): $55K/month = $660K/year<br />
+- Monitoring &amp; maintenance: $100K/year<br />
+- <strong>Total Annual:</strong> $760K</p>
+<h3>Revenue Impact (Conservative Estimates)</h3>
+<p><strong>Scenario 1: 1% Retention Improvement</strong><br />
+- 180M members × 1% = 1.8M retained<br />
+- Value: 1.8M × $120/year = <strong>$216M annually</strong></p>
+<p><strong>Scenario 2: 5% Engagement Lift</strong><br />
+- More listening → Higher retention<br />
+- Benchmark: Netflix saw 10% lift from personalization<br />
+- Estimated value: <strong>$50M+ annually</strong></p>
+<p><strong>Scenario 3: Cross-Genre Discovery</strong><br />
+- 15% more genre exploration<br />
+- 27M new genre trials<br />
+- 2% conversion to regular listeners<br />
+- <strong>$50M+ incremental LTV</strong></p>
+<h3>ROI Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Annual Value</th>
+<th>Cost</th>
+<th>ROI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Conservative</td>
+<td>$216M</td>
+<td>$760K</td>
+<td><strong>284:1</strong></td>
+</tr>
+<tr>
+<td>Moderate</td>
+<td>$266M</td>
+<td>$760K</td>
+<td><strong>350:1</strong></td>
+</tr>
+<tr>
+<td>Optimistic</td>
+<td>$316M</td>
+<td>$760K</td>
+<td><strong>416:1</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Break-Even:</strong> 0.37% retention lift</p>
+<p><strong>Risk-Adjusted Return:</strong> Even at 25% of projected impact = <strong>88:1 ROI</strong></p>
+<hr />
+<h2>📊 Competitive Landscape</h2>
+<h3>Market Position</h3>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Emotion Discovery</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Audible</strong></td>
+<td>✅ <strong>READY</strong></td>
+<td>This proposal</td>
+</tr>
+<tr>
+<td>Spotify</td>
+<td>🟡 Podcasts only</td>
+<td>Q2 2026 launch</td>
+</tr>
+<tr>
+<td>Apple Books</td>
+<td>❌ Basic recs</td>
+<td>No plans</td>
+</tr>
+<tr>
+<td>Scribd</td>
+<td>❌ Limited</td>
+<td>No plans</td>
+</tr>
+</tbody>
+</table>
+<p><strong>First-Mover Advantage:</strong><br />
+- 6-12 month lead time<br />
+- Patent opportunity<br />
+- PR value: "Audible understands how you feel"<br />
+- Data moat through feedback loops</p>
+<h3>Strategic Benefits</h3>
+<p><strong>1. User Retention</strong><br />
+- Emotional connection → Loyalty<br />
+- Better matches → Less churn<br />
+- Wellness positioning → Premium tier upsell</p>
+<p><strong>2. Content Discovery</strong><br />
+- 15% cross-genre exploration<br />
+- Longer catalog tail monetization<br />
+- Better content recommendation to creators</p>
+<p><strong>3. Brand Positioning</strong><br />
+- Mental wellness leader<br />
+- AI innovation showcase<br />
+- "Audible gets me" brand affinity</p>
+<p><strong>4. Data Advantage</strong><br />
+- User feedback improves model<br />
+- Competitive moat deepens over time<br />
+- Extensible to other features</p>
+<hr />
+<h2>🚀 Recommended Path Forward</h2>
+<h3>Phase 1: Pilot (Month 1)</h3>
+<p><strong>Scope:</strong> 5% of US users (9M listeners)</p>
+<p><strong>Implementation:</strong><br />
+- Add "Find by Mood" feature<br />
+- A/B test: SBERT vs baseline<br />
+- Monitor: engagement, latency, NPS</p>
+<p><strong>Success Criteria:</strong><br />
+- ≥3% engagement lift<br />
+- &lt;100ms latency (p95)<br />
+- Positive NPS impact</p>
+<p><strong>Investment:</strong> $200K (integration)<br />
+<strong>Risk:</strong> Low (small user %)<br />
+<strong>Timeline:</strong> 4 weeks</p>
+<h3>Phase 2: Scale (Months 2-3)</h3>
+<p><strong>Scope:</strong> Expand to 25% if pilot successful</p>
+<p><strong>Enhancements:</strong><br />
+- Multi-emotion selection<br />
+- Voice integration ("Alexa, I'm stressed")<br />
+- Personalization layer</p>
+<p><strong>Investment:</strong> $150K<br />
+<strong>Risk:</strong> Moderate (infrastructure scaling)<br />
+<strong>Timeline:</strong> 8 weeks</p>
+<h3>Phase 3: Full Launch (Month 4+)</h3>
+<p><strong>Scope:</strong> Global rollout with premium features</p>
+<p><strong>Features:</strong><br />
+- Real-time personalization<br />
+- "Emotion journey" playlists<br />
+- Audible Plus exclusive</p>
+<p><strong>Investment:</strong> $450K<br />
+<strong>Risk:</strong> Low (proven at scale)<br />
+<strong>Timeline:</strong> 12 weeks</p>
+<hr />
+<h2>⚠️ Risks &amp; Mitigation</h2>
+<h3>Technical Risks</h3>
+<table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Probability</th>
+<th>Impact</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Latency spikes</td>
+<td>Low</td>
+<td>Medium</td>
+<td>Fallback to baseline, caching</td>
+</tr>
+<tr>
+<td>Model bias</td>
+<td>Medium</td>
+<td>High</td>
+<td>Regular audits, diverse test set</td>
+</tr>
+<tr>
+<td>Infrastructure cost</td>
+<td>Low</td>
+<td>Medium</td>
+<td>Spot instances, optimization</td>
+</tr>
+</tbody>
+</table>
+<h3>Business Risks</h3>
+<table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Probability</th>
+<th>Impact</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Low adoption</td>
+<td>Low</td>
+<td>High</td>
+<td>User education, prominent placement</td>
+</tr>
+<tr>
+<td>Privacy concerns</td>
+<td>Low</td>
+<td>Medium</td>
+<td>Clear messaging, opt-out option</td>
+</tr>
+<tr>
+<td>Competitor catch-up</td>
+<td>Medium</td>
+<td>Low</td>
+<td>First-mover + data advantage</td>
+</tr>
+</tbody>
+</table>
+<h3>Risk Tolerance</h3>
+<p><strong>This is a HIGH REWARD, LOW RISK investment:</strong><br />
+- ✅ Proven technology (SBERT widely adopted)<br />
+- ✅ Conservative estimates (Netflix benchmark: 10% lift)<br />
+- ✅ Gradual rollout (5% → 25% → 100%)<br />
+- ✅ Fallback mechanism (revert to baseline)<br />
+- ✅ Sunk costs ($500K already spent)</p>
+<hr />
+<h2>📈 Success Metrics &amp; KPIs</h2>
+<h3>Primary Metrics (90-Day Window)</h3>
+<p><strong>User Engagement:</strong><br />
+- Title starts from emotion search (target: +5%)<br />
+- Completion rate (target: +2%)<br />
+- Session duration (target: +3%)</p>
+<p><strong>Business Impact:</strong><br />
+- Retention rate (target: +1%)<br />
+- NPS score (target: +5 points)<br />
+- Support ticket volume (monitor, expect flat)</p>
+<p><strong>Technical Performance:</strong><br />
+- p95 latency (&lt;100ms)<br />
+- Uptime (99.9%+)<br />
+- Cost per query (&lt;$0.01)</p>
+<h3>Secondary Metrics</h3>
+<ul>
+<li>Cross-genre discovery rate</li>
+<li>Search refinement reduction</li>
+<li>Voice feature adoption (Phase 2+)</li>
+<li>Audible Plus conversion lift</li>
+</ul>
+<hr />
+<h2>💡 Strategic Recommendations</h2>
+<h3>Immediate Actions (This Quarter)</h3>
+<p><strong>1. Executive Approval</strong> ✋<br />
+- <strong>Ask:</strong> $200K for Phase 1 pilot<br />
+- <strong>Timeline:</strong> Launch in 4 weeks<br />
+- <strong>Risk:</strong> Minimal (5% users, gradual rollout)</p>
+<p><strong>2. Legal Review</strong><br />
+- Patent filing for emotion-content matching<br />
+- Privacy policy update (emotion data handling)<br />
+- Competitive landscape monitoring</p>
+<p><strong>3. Cross-Functional Alignment</strong><br />
+- Product: UX design for "Find by Mood"<br />
+- Engineering: Infrastructure scaling plan<br />
+- Marketing: Positioning &amp; launch plan</p>
+<h3>Medium-Term (Next 2 Quarters)</h3>
+<p><strong>4. Scale &amp; Enhance</strong><br />
+- Phase 2 rollout (25% users)<br />
+- Voice integration (Alexa)<br />
+- International markets</p>
+<p><strong>5. Data Flywheel</strong><br />
+- Feedback loop for model improvement<br />
+- A/B testing framework<br />
+- Personalization layer</p>
+<p><strong>6. Ecosystem Integration</strong><br />
+- Audible Plus/Premium tier features<br />
+- Partner opportunities (mental wellness apps)<br />
+- B2B licensing (corporate wellness)</p>
+<hr />
+<h2>🎯 The Ask</h2>
+<h3>Required Approvals</h3>
+<p><strong>1. Budget Approval: $200K</strong> (Phase 1 Pilot)<br />
+- Integration &amp; testing<br />
+- 4-week timeline<br />
+- 5% user rollout</p>
+<p><strong>2. Resource Allocation</strong><br />
+- 2 ML engineers (full-time, 1 month)<br />
+- 1 product manager (50%, 2 months)<br />
+- Engineering support (backend, mobile)</p>
+<p><strong>3. Go/No-Go Decision Point</strong><br />
+- Review pilot results after 4 weeks<br />
+- Approve Phase 2 ($150K) if success criteria met<br />
+- Full launch ($450K) after Phase 2 validation</p>
+<h3>Expected Timeline</h3>
+<pre><code>Week 1-4:   Phase 1 Pilot (5% users)
+Week 5-8:   Results analysis + Phase 2 prep
+Week 9-16:  Phase 2 Scale (25% users)
+Week 17-20: Full launch preparation
+Week 21+:   Global rollout
+</code></pre>
+<p><strong>First Results:</strong> 30 days<br />
+<strong>Break-Even:</strong> 60-90 days (projected)<br />
+<strong>Full Impact:</strong> 6-12 months</p>
+<hr />
+<h2>✅ Conclusion</h2>
+<h3>Why Now?</h3>
+<p><strong>1. Market Timing</strong><br />
+- Competitors launching similar features<br />
+- Mental wellness trend accelerating<br />
+- User expectations rising</p>
+<p><strong>2. Technical Readiness</strong><br />
+- Model proven (113% better than baseline)<br />
+- Infrastructure available (AWS SageMaker)<br />
+- Team has expertise</p>
+<p><strong>3. Financial Opportunity</strong><br />
+- $266M+ potential annual value<br />
+- $760K annual cost<br />
+- 350:1 ROI<br />
+- 0.37% retention lift to break even</p>
+<h3>The Bottom Line</h3>
+<p><strong>This is the highest ROI project in our pipeline.</strong></p>
+<p>✅ <strong>Proven technology</strong> (SBERT industry standard)<br />
+✅ <strong>Conservative estimates</strong> (1% retention lift)<br />
+✅ <strong>Low risk</strong> (gradual rollout, fallback mechanism)<br />
+✅ <strong>High reward</strong> ($266M+ annual value)<br />
+✅ <strong>Competitive edge</strong> (6-12 month lead)  </p>
+<p><strong>Recommendation:</strong> <strong>APPROVE Phase 1 Pilot ($200K, 4 weeks, 5% users)</strong></p>
+<p><strong>Expected Outcome:</strong> Validate 3%+ engagement lift, proceed to scale.</p>
+<hr />
+<h2>📞 Next Steps</h2>
+<p><strong>Immediate (This Week):</strong><br />
+1. Executive approval for $200K pilot budget<br />
+2. Legal review of patent &amp; privacy<br />
+3. Kick-off meeting with Product &amp; Engineering</p>
+<p><strong>Short-Term (Next 4 Weeks):</strong><br />
+1. Phase 1 implementation<br />
+2. UX design &amp; user testing<br />
+3. Infrastructure setup</p>
+<p><strong>Decision Point (Week 5):</strong><br />
+1. Review pilot metrics<br />
+2. Go/no-go for Phase 2<br />
+3. Budget approval if successful</p>
+<hr />
+<p><strong>Questions?</strong></p>
+<p><strong>Contact:</strong><br />
+- <strong>Analytics Lead:</strong> [Your Name]<br />
+- <strong>ML Engineering:</strong> [Team Lead]<br />
+- <strong>Product Owner:</strong> [PM Name]</p>
+<p><strong>Resources:</strong><br />
+- Technical deep-dive: <code>notebooks/project_summary.ipynb</code><br />
+- Model documentation: <code>README.md</code><br />
+- Live demo: <code>streamlit run src/app/app_streamlit.py</code></p>
+<hr />
+<p><strong>Thank you for your consideration.</strong></p>
+<p><em>Let's give Audible listeners the emotional connection they're seeking.</em></p>
+<p>📧 <a href="mailto:your.email@audible.com">your.email@audible.com</a><br />
+📞 [Contact Number]<br />
+🔗 [Project Repository]</p>
+<hr />
+<p><strong>Appendix: Supporting Data Available Upon Request</strong><br />
+- Detailed technical architecture<br />
+- Cost-benefit analysis spreadsheet<br />
+- User research findings<br />
+- Competitive analysis<br />
+- Risk assessment matrix<br />
+- Implementation timeline (Gantt chart)</p>
+    </div>
+    
+    <script>
+        // Instructions for saving as PDF
+        console.log('To save as PDF: Click the Print button above or press Ctrl+P, then choose "Save as PDF"');
+    </script>
+</body>
+</html>
