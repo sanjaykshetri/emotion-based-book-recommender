@@ -13,6 +13,7 @@ Date: December 26, 2025
 import pandas as pd
 import numpy as np
 import pickle
+import joblib
 from pathlib import Path
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.neighbors import NearestNeighbors
@@ -39,7 +40,7 @@ class TFIDFEmotionRecommender:
         print(f"✅ Train data: {self.train_df.shape}")
         
         # Load TF-IDF features
-        self.X_train_tfidf = np.load(self.features_path / "X_train_tfidf.npy")
+        self.X_train_tfidf = np.load(self.features_path / "X_train_tfidf.npz")['X']
         print(f"✅ TF-IDF features: {self.X_train_tfidf.shape}")
         
         # Load vectorizer
@@ -188,8 +189,7 @@ class TFIDFEmotionRecommender:
         print(f"\n💾 Saving model...")
         
         # Save KNN model
-        with open(output_path / 'tfidf_knn_model.pkl', 'wb') as f:
-            pickle.dump(self.model, f)
+        joblib.dump(self.model, output_path / 'tfidf_knn_model.pkl', compress=3)
         
         print(f"  ✅ Saved KNN model")
         print(f"📂 Model saved to: {output_path}")

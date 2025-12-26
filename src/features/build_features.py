@@ -45,7 +45,7 @@ class FeatureEngineer:
         
         return self
     
-    def build_tfidf_features(self, max_features=5000, ngram_range=(1, 2)):
+    def build_tfidf_features(self, max_features=1000, ngram_range=(1, 2)):
         """
         Build TF-IDF features from combined text (tags + titles).
         
@@ -161,8 +161,8 @@ class FeatureEngineer:
         print("\n💾 Saving features...")
         
         # Save TF-IDF features
-        np.save(self.features_path / 'X_train_tfidf.npy', self.X_train_tfidf.toarray())
-        np.save(self.features_path / 'X_test_tfidf.npy', self.X_test_tfidf.toarray())
+        np.savez_compressed(self.features_path / 'X_train_tfidf.npz', X=self.X_train_tfidf.toarray())
+        np.savez_compressed(self.features_path / 'X_test_tfidf.npz', X=self.X_test_tfidf.toarray())
         print(f"  ✅ Saved TF-IDF features")
         
         # Save metadata features if available
@@ -218,7 +218,7 @@ def main():
     
     # Run pipeline
     fe.load_data()
-    fe.build_tfidf_features(max_features=5000, ngram_range=(1, 2))
+    fe.build_tfidf_features(max_features=1000, ngram_range=(1, 2))
     fe.build_metadata_features()
     fe.create_emotion_mappings()
     fe.save_features()
