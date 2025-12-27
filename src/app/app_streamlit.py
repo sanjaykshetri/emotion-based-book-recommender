@@ -83,7 +83,7 @@ def load_models():
         tfidf_vectorizer = pickle.load(f)
     with open(features_path / 'emotion_vectors.pkl', 'rb') as f:
         tfidf_emotion_vectors = pickle.load(f)
-    X_train_tfidf = np.load(features_path / 'X_train_tfidf.npy')
+    X_train_tfidf = np.load(features_path / 'X_train_tfidf.npz')['X']
     tfidf_knn = NearestNeighbors(n_neighbors=20, metric='cosine', algorithm='brute')
     tfidf_knn.fit(X_train_tfidf)
     
