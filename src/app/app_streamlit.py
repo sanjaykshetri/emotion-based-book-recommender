@@ -70,6 +70,11 @@ st.markdown("""
 
 @st.cache_resource
 def load_models():
+        import os
+        import subprocess
+        x_train_tfidf_path = features_path / "X_train_tfidf.npz"
+        if not x_train_tfidf_path.exists():
+            subprocess.run(["python", "src/features/build_features.py"], check=True)
     """Load both TF-IDF and SBERT models."""
     base_path = Path("data/processed")
     models_path = base_path / "models"
