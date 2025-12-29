@@ -70,19 +70,20 @@ st.markdown("""
 
 @st.cache_resource
 def load_models():
-        import os
-        import subprocess
-        x_train_tfidf_path = features_path / "X_train_tfidf.npz"
-        if not x_train_tfidf_path.exists():
-            subprocess.run(["python", "src/features/build_features.py"], check=True)
     """Load both TF-IDF and SBERT models."""
     base_path = Path("data/processed")
     models_path = base_path / "models"
     features_path = base_path / "features"
-    
+
+    # Optionally build features if missing
+    x_train_tfidf_path = features_path / "X_train_tfidf.npz"
+    if not x_train_tfidf_path.exists():
+        import subprocess
+        subprocess.run(["python", "src/features/build_features.py"], check=True)
+
     # Load train data
     train_df = pd.read_csv(base_path / "books_train.csv")
-    
+
     # TF-IDF Model
     with open(features_path / 'tfidf_vectorizer.pkl', 'rb') as f:
         tfidf_vectorizer = pickle.load(f)
@@ -91,14 +92,14 @@ def load_models():
     X_train_tfidf = np.load(features_path / 'X_train_tfidf.npz')['X']
     tfidf_knn = NearestNeighbors(n_neighbors=20, metric='cosine', algorithm='brute')
     tfidf_knn.fit(X_train_tfidf)
-    
+
     # SBERT Model
     sbert_model = SentenceTransformer('all-MiniLM-L6-v2')
     sbert_embeddings = np.load(models_path / 'sbert_lite_embeddings.npy')
     with open(models_path / 'sbert_lite_emotion_embeddings.pkl', 'rb') as f:
         sbert_emotion_embeddings = pickle.load(f)
     sbert_books_df = pd.read_csv(models_path / 'sbert_lite_books.csv')
-    
+
     return {
         'train_df': train_df,
         'tfidf_vectorizer': tfidf_vectorizer,
